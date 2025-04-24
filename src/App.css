@@ -1,0 +1,30 @@
+.App{
+    font-family: 'Courier New', Courier, monospace;
+    justify-content: center;
+    text-align: center;
+}
+
+.searchbar{
+    width: 500px;
+    padding: 5px;
+}
+
+.results-container{
+    width: 500px;
+    margin: auto;
+    border: 1px solid black;
+    padding: 5px;
+    text-align: left;
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+.result{
+    display: block;
+    padding: 2px;
+}
+
+.result:hover{
+    background-color: beige;
+    cursor: pointer;
+}
