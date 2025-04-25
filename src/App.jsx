@@ -5,16 +5,30 @@ function App() {
   const [input, setInput] = useState("");
   const [results, setResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
+  const [cache, setCache] = useState({})
 
   const fetchData = async () => {
+
+    if (cache[input]){
+      console.log("Cache hit")
+      setResults(cache[input]);
+      return;
+    }
+
+    console.log("API Call" + input)
     const data = await fetch("https://dummyjson.com/recipes/search?q=" + input);
     const json = await data.json();
     setResults(json?.recipes);
+    setCache(prev => ({...prev, [input]: json?.recipes}))
   };
 
   useEffect(() => {
-    fetchData();
-    console.log("running");
+    const timer =setTimeout(fetchData, 300)
+    //console.log("running");
+
+    return () => {
+      clearTimeout(timer)
+    }
   }, [input]);
 
   return (
